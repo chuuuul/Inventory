@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 224009106300493402}
   - component: {fileID: 222955991686779772}
   - component: {fileID: 114573550236402090}
-  - component: {fileID: 114370772116946914}
   m_Layer: 5
   m_Name: P_Slot
   m_TagString: Untagged
@@ -63,21 +62,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114370772116946914
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1427222791871904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a0dc832d069484f8250626a897f865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blankItemImage: {fileID: 21300000, guid: ed1074391f139544d941ae0870937dc0, type: 3}
-  fontSizeRate: 0.3
-  itemImage: {fileID: 0}
-  itemCode: 0
 --- !u!114 &114573550236402090
 MonoBehaviour:
   m_ObjectHideFlags: 1

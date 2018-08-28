@@ -14,7 +14,7 @@ public class ItemHandler : MonoBehaviour {
     internal GraphicRaycaster gr;
 
 
-    public Action<PointerEventData, SlotScript> OnSlotUp { get; set; } //포인터 업 이벤트
+    public Action<PointerEventData, SlotItem> OnSlotUp { get; set; } //포인터 업 이벤트
 
     private void Awake()
     {

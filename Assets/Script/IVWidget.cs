@@ -32,7 +32,7 @@ public class IVWidget : MonoBehaviour {
 		itemSizeY = slotSizeY * itemSizeRate;
 		
 		MakeFrame();                            // 틀생성
-        IVManager.invenManager.allSlot = this.allSlot;
+        //IVManager.invenManager.allSlot = this.allSlot;
     }
 
 	void MakeFrame()
