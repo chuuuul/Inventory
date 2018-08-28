@@ -60,13 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\DragImageScript.cs" />
     <Compile Include="Assets\Script\ItemHandler.cs" />
-    <Compile Include="Assets\Script\ItemScript.cs" />
-    <Compile Include="Assets\Script\IVManager.cs" />
     <Compile Include="Assets\Script\IVWidget.cs" />
     <Compile Include="Assets\Script\PlayerMoving.cs" />
-    <Compile Include="Assets\Script\SlotScript.cs" />
+    <Compile Include="Assets\Script\StoreScript.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Project/unity/Inventory/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
