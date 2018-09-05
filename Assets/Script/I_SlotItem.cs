@@ -46,7 +46,7 @@ public interface IUsable
 public interface IEquipment
 {
     bool Usable { get; set; }
-    InventorySlot TargetSlot { get; set; }      // 사용시 착용 되는 대상 슬롯
+    //InventorySlot TargetSlot { get; set; }      // 사용시 착용 되는 대상 슬롯    //####
     Action<SlotItem> UseEvent { get; set; }   
 }
 

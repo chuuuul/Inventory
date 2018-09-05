@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerMoving : MonoBehaviour
 {
+    public float speed = 5.0f;
 
-	public int speed= 5;
-
-	private void Update()
+    private void Update()
 	{
-		MovePlayer();
-	}
+
+        MovePlayer();
+    }
 
 	void MovePlayer()
 	{

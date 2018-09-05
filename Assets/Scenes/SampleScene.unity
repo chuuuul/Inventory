@@ -475,6 +475,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1716721701}
+  movable: 1
+  moveToOtherSlot: 1
+  switching: 1
+  merging: 1
+  usable: 1
 --- !u!1 &735232239
 GameObject:
   m_ObjectHideFlags: 0
