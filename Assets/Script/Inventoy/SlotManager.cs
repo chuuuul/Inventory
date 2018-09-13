@@ -29,7 +29,7 @@ public class SlotManager : MonoBehaviour
     [Tooltip("아이템 이벤트 핸들러")]
     public ItemHandler itemHandler;             
 
-    public InventoryTab LastRefreshTab { get; set; }        //최근에 새로고침된 탭
+    public InventoryTab LastRefreshedTab { get; set; }        //최근에 새로고침된 탭
 
     private void Awake()
     {
@@ -75,19 +75,23 @@ public class SlotManager : MonoBehaviour
             slotList[i].SetSlot(tab.ItemTable[i]); 
         }
 
-        LastRefreshTab = tab;
+        LastRefreshedTab = tab;
 
     }
+
+
+
 
     //모든 아이템 테이블 마지막 탭으로 새로고침
     public static void RefreshAll()
     {
         for (int i = 0; i < ManagerList.Count; i++)
         {
-            if (ManagerList[i] != null)
-                ManagerList[i].Refresh(ManagerList[i].LastRefreshTab);
+            if (ManagerList[i].LastRefreshedTab != null)     
+                ManagerList[i].Refresh(ManagerList[i].LastRefreshedTab);
         }
     }
+
 
     //모든 슬롯의 허용 타입 설정
     public void SetSlotType (string type)

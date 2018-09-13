@@ -82,15 +82,16 @@ public class ItemHandler : MonoBehaviour {
         
     }
 
+
     //아이템 이동 (아이템 -> 빈 슬롯)
     public void Move(SlotItem selectedItem, InventorySlot targetSlot)
     {
         int originIndex = selectedItem.Index;
-        targetSlot.slotManager.LastRefreshTab.ItemTable[targetSlot.Index] = selectedItem;
+        targetSlot.slotManager.LastRefreshedTab.ItemTable[targetSlot.Index] = selectedItem;
         selectedItem.Tab[originIndex] = null;
 
         selectedItem.Index = targetSlot.Index;
-        selectedItem.Tab = targetSlot.slotManager.LastRefreshTab;
+        selectedItem.Tab = targetSlot.slotManager.LastRefreshedTab;
 
 
         OnItemMoved?.Invoke(selectedItem);
@@ -153,7 +154,62 @@ public class ItemHandler : MonoBehaviour {
     // 아이템 사용
     public void Use (InventorySlot usedSlot, SlotItem usedItem)
     {
+        // 사용아이템일 때 
+        if (usedItem is IUsable)        //IUsable 인터페이스를 지원하는지 확인
+        {
+            IUsable usableItem = usedItem as IUsable;
+            //사용 이벤트가 있을 경우 실행
+            if(usableItem.Usable)
+            {
+                usableItem.UseEvent?.Invoke(usedItem); 
+                OnItemUsed?.Invoke(usedItem);
+            }
+        }
 
+        // 장비템아이일 때
+        else if ( usedItem is IEquipment)
+        {
+            IEquipment equipment = usedItem as IEquipment;
+            
+            // 장착
+            if(equipment.Usable)
+            {
+                if (equipment.TargetSlot.Item == null)
+                    Move(usedItem, equipment.TargetSlot);
+                else
+                    Switch(usedItem, equipment.TargetSlot.Item);
+
+                equipment.UseEvent?.Invoke(usedItem);
+                equipment.TargetSlot.slotManager.Refresh(usedItem.Tab);
+                OnItemUsed?.Invoke(usedItem);
+            }
+
+        }
+        // 소비아이템일 때
+        
+        else if ( usedItem is IConsumable)
+        {
+            IConsumable consumable = usedItem as IConsumable;
+
+            if( consumable.Usable )
+            {
+                // 개수 -1
+                usedItem.Count--;
+                if (usedItem.Count < 1) 
+                    usedItem.Tab.Remove(usedItem);
+
+                consumable.UseEvent?.Invoke(usedItem);
+                OnItemUsed?.Invoke(usedItem);
+            }
+        }
+    }
+
+    //선택 및 대상 아이템 초기화
+    internal void ResetItems ()
+    {
+        SelectedItem = null;
+        TargetItem = null;
+        OnEventEnded?.Invoke();
     }
 
 }

@@ -61,16 +61,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Chul.cs" />
-    <Compile Include="Assets\Script\I_SlotItem.cs" />
-    <Compile Include="Assets\Script\InventorySlot.cs" />
-    <Compile Include="Assets\Script\ItemHandler.cs" />
-    <Compile Include="Assets\Script\IVWidget.cs" />
-    <Compile Include="Assets\Script\LogDelete.cs" />
+    <Compile Include="Assets\Script\Etc\FindMissingScript.cs" />
+    <Compile Include="Assets\Script\Etc\LogDelete.cs" />
+    <Compile Include="Assets\Script\Inventoy\Function\SelectedItemTracker.cs" />
+    <Compile Include="Assets\Script\Inventoy\I_SlotItem.cs" />
+    <Compile Include="Assets\Script\Inventoy\InventorySlot.cs" />
+    <Compile Include="Assets\Script\Inventoy\Item.cs" />
+    <Compile Include="Assets\Script\Inventoy\ItemHandler.cs" />
+    <Compile Include="Assets\Script\Inventoy\IVWidget.cs" />
+    <Compile Include="Assets\Script\Inventoy\SlotItem.cs" />
+    <Compile Include="Assets\Script\Inventoy\SlotManager.cs" />
+    <Compile Include="Assets\Script\Inventoy\TabManager.cs" />
+    <Compile Include="Assets\Script\Item\GetItem.cs" />
     <Compile Include="Assets\Script\PlayerMoving.cs" />
-    <Compile Include="Assets\Script\SlotItem.cs" />
-    <Compile Include="Assets\Script\SlotManager.cs" />
     <Compile Include="Assets\Script\StoreScript.cs" />
-    <Compile Include="Assets\Script\TabManager.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Project/unity/Inventory/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

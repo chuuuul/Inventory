@@ -7,7 +7,7 @@ using UnityEngine;
 /// - 필요시 상속하여 다른 아이템 구현
 /// </summary>
 
-public class SlotItem : MonoBehaviour,I_SlotItem, IItemProperty
+public class SlotItem : I_SlotItem, IItemProperty
 {
     public InventoryTab Tab { get; set; }
     public int Index { get; set; }

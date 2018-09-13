@@ -18,6 +18,7 @@ public class TabManager : MonoBehaviour
     private static Dictionary<string, InventoryTab> tabDistionary 
                         = new Dictionary<string, InventoryTab>();   // 탭 딕셔너리
 
+
     private void Awake()
     {
         for (int i = 0; i < tabList.Count; i++)
@@ -63,6 +64,8 @@ public class InventoryTab
     public List<SlotItem> ItemTable { get; private set; }   // 아이템 리스트
 
 
+
+
     // 생성자 탭 이름과 수용량 설정
     public InventoryTab(string tabName, int capacity)
     {
@@ -99,16 +102,23 @@ public class InventoryTab
     //아이템 이름으로 아이템 반환 // List로 모두 반환
     public SlotItem[] GetItemByName(string itemName)
     {
-        List<SlotItem> Items = new List <SlotItem>();
+        List<SlotItem> items = new List <SlotItem>();
+
         for (int i = 0; i < ItemTable.Count; i++)
         {
-            if ( (itemName == ItemTable[i].Name) && (ItemTable[i] != null) )
-                Items.Add(ItemTable[i]);
+            
+            if ((ItemTable[i] != null) && (itemName == ItemTable[i].Name)  )
+            {
+                items.Add(ItemTable[i]);
+            }
+
 
         }
-        return Items.ToArray();
+        return items.ToArray();
 
     }
+    
+
 
     // 모든 아이템 리스트로 반환  // List로 모두 반환     // 아이템 저장용 
     public SlotItem[] GetItemAll()
@@ -172,6 +182,7 @@ public class InventoryTab
             // targetItem : 합칠 대상의 인벤토리 // item : 추가할 아이템 정보
             SlotItem[] targetItems = GetItemByName(item.Name);
 
+            
             //자동병합      
             for (int i = 0; i < targetItems.Length; i++ )
             {

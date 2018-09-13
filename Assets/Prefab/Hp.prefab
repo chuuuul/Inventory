@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23696483973109044}
   - component: {fileID: 136449093374850942}
   - component: {fileID: 54179503128763926}
+  - component: {fileID: 114598323979957690}
   m_Layer: 0
   m_Name: Hp
   m_TagString: Untagged
@@ -100,6 +101,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114598323979957690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1126648937802528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a599f0705efaf4dbfc088919f9f2f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  maxCount: 3
+  count: 1
+  id: 
+  itemName: 
+  type: 
+  description: 
+  icon: {fileID: 0}
 --- !u!136 &136449093374850942
 CapsuleCollider:
   m_ObjectHideFlags: 1
