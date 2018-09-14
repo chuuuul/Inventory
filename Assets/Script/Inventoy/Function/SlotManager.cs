@@ -62,7 +62,6 @@ public class SlotManager : MonoBehaviour
     //아이템 테이블 새로고침 ( 탭 아이템 리스트 시각화)
     public void Refresh(InventoryTab tab)
     {
-
         if (tab.Capacity > slotList.Count)
         {
             Debug.Log("탭의 아이템 수용량이 슬롯 수를 초과합니다. : " + tab.TabName);

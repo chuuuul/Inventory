@@ -21,7 +21,8 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     
     private void Start()
     {
-        if (slotManager == null)    // 슬롯 instatiate 할 때 캐싱했음
+        //캐싱 되었는지 확인
+        if (slotManager == null)    
         {
             Debug.Log("슬롯매니저가 캐싱 되지 않았습니다");
             return; 

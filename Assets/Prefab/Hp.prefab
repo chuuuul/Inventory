@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23696483973109044}
   - component: {fileID: 136449093374850942}
   - component: {fileID: 54179503128763926}
-  - component: {fileID: 114598323979957690}
+  - component: {fileID: 114378751592680410}
   m_Layer: 0
   m_Name: Hp
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1126648937802528}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -5.65, y: 0.34, z: 0}
+  m_LocalPosition: {x: -5.8752227, y: -3.1122165, z: 0.7845497}
   m_LocalScale: {x: 1, y: 0.58, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114598323979957690
+--- !u!114 &114378751592680410
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,14 +112,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a599f0705efaf4dbfc088919f9f2f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  maxCount: 3
-  count: 1
-  id: 
-  itemName: 
-  type: 
-  description: 
-  icon: {fileID: 0}
+  maxCount: 5
+  dropAmountRange: {x: 1, y: 3}
+  id: 1001
+  itemName: hp
+  type: hp
+  description: hp +50
+  icon: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
 --- !u!136 &136449093374850942
 CapsuleCollider:
   m_ObjectHideFlags: 1

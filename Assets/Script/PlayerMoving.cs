@@ -24,14 +24,5 @@ public class PlayerMoving : MonoBehaviour
 
 	}
 
-    private void LateUpdate()
-    {
-        foreach (var i in TabManager.GetTab("ItemTable").ItemTable)
-        {
-            if (i == null)
-                return;
-            Debug.Log("table  name : " + i.Name);
-        }
-    }
 
 }
