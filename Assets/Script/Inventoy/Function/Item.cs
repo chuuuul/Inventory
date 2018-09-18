@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 using System;
 
 /// <summary>
@@ -7,16 +6,16 @@ using System;
 /// 
 /// - IUsable : 가장 일반적인 아이템 사용 인터페이스
 /// - IEquipment : 사용시 지정된 슬롯으로 이동 또는 교체
-/// - IConsumeable : 사용시 갯수가 줄어들며 0개가 되면 탭에서 자동 제거
+/// - IConsum : 사용시 갯수가 줄어들며 0개가 되면 탭에서 자동 제거
 /// </summary>
 
-public class Item : SlotItem, IUsable//, ITradable
+public class CommonlItem : SlotItem, IUsable, ITradable
 {
 
-    public Item(string id, string name, string type, string description, Sprite icon)
+    public CommonlItem(int count , int maxCount , int buyPrice , int sellPrice ,string id, string name, string displayName, string description, string type, Sprite icon)
     {
         SetCount();
-        SetProperty(id, name, type, description);
+        SetProperty(id, name, displayName, description, type);
         Icon = icon;
         Usable = true;
     }
@@ -34,13 +33,14 @@ public class Item : SlotItem, IUsable//, ITradable
     }
 }
 
-public class Equipment : SlotItem, IEquipment//, ITradable
+public class Equipment : SlotItem, IEquipment, ITradable
 {
 
-    public Equipment(string id, string name, string type, string description, Sprite icon)
+    public Equipment(int buyPrice , int sellPrice, string id, string name, string displayName, string description, string type, Sprite icon)
     {
         SetCount();
-        SetProperty(id, name, type, description);
+        SetProperty(id, name, displayName, description, type);
+        SetPrice(buyPrice, sellPrice);
         Icon = icon;
         Usable = true;
     }
@@ -59,13 +59,14 @@ public class Equipment : SlotItem, IEquipment//, ITradable
     }
 }
 
-public class Consumable : SlotItem, IConsumable//, ITradable
+public class Consum : SlotItem, IConsum, ITradable
 {
 
-    public Consumable(int maxCount, int count, string id, string name, string type, string description, Sprite icon)
+    public Consum(int count, int maxCount,int buyPrice,int sellPrice, string id, string name,string displayName, string description, string type, Sprite icon)
     {
-        SetCount(maxCount, count);
-        SetProperty(id, name, type, description);
+        SetCount(count, maxCount);
+        SetProperty(id, name, displayName, description, type);
+        SetPrice(buyPrice, sellPrice);
         Icon = icon;
         Usable = true;
     }

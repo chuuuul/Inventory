@@ -42,6 +42,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         // 아이템 핸들러 설정
         itemHandler = slotManager.itemHandler;
+
     }
 
 
@@ -230,7 +231,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         }
     }
 
-        void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
         itemHandler.OnSlotEnter?.Invoke(eventData, this);
     }

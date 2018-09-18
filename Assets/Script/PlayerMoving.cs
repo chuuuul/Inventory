@@ -8,7 +8,6 @@ public class PlayerMoving : MonoBehaviour
 
     private void Update()
 	{
-
         MovePlayer();
     }
 

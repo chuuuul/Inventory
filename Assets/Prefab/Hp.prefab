@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33407505057460340}
   - component: {fileID: 23696483973109044}
   - component: {fileID: 136449093374850942}
-  - component: {fileID: 54179503128763926}
   - component: {fileID: 114378751592680410}
   m_Layer: 0
   m_Name: Hp
@@ -86,21 +85,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1126648937802528}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54179503128763926
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1126648937802528}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &114378751592680410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,13 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a599f0705efaf4dbfc088919f9f2f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCount: 5
+  itemName: hp1
   dropAmountRange: {x: 1, y: 3}
-  id: 1001
-  itemName: hp
-  type: hp
-  description: hp +50
-  icon: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
 --- !u!136 &136449093374850942
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -54,9 +54,13 @@ public class SlotManager : MonoBehaviour
     // 슬롯 이름 순으로 정렬 및 인덱스 지정
     public void SlotSort()
     {
-        if (sortByName) slotList.Sort((InventorySlot x, InventorySlot y) => x.name.CompareTo(y.name));
+        
+        if (sortByName)
+        { 
+            slotList.Sort((InventorySlot x, InventorySlot y) => x.name.CompareTo(y.name));
         for (int i = 0; i < slotList.Count; i++)  //####
             slotList[i].Index = i;
+        }
     }
 
     //아이템 테이블 새로고침 ( 탭 아이템 리스트 시각화)
@@ -78,9 +82,6 @@ public class SlotManager : MonoBehaviour
 
     }
 
-
-
-
     //모든 아이템 테이블 마지막 탭으로 새로고침
     public static void RefreshAll()
     {
@@ -90,7 +91,6 @@ public class SlotManager : MonoBehaviour
                 ManagerList[i].Refresh(ManagerList[i].LastRefreshedTab);
         }
     }
-
 
     //모든 슬롯의 허용 타입 설정
     public void SetSlotType (string type)

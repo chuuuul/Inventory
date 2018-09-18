@@ -182,16 +182,16 @@ public class InventoryTab
             // targetItem : 합칠 대상의 인벤토리 // item : 추가할 아이템 정보
             SlotItem[] targetItems = GetItemByName(item.Name);
 
-            
             //자동병합      
             for (int i = 0; i < targetItems.Length; i++ )
             {
                 if (targetItems[i].MaxCount> targetItems[i].Count)        // 최대개수보다 적을 때 병합.
                 {
+
                     int canAddAmount = targetItems[i].MaxCount - targetItems[i].Count;
 
                     // 한 슬롯에 다 병합 할 수 있으면 한번에 다 병합
-                    if( canAddAmount > item.Count)
+                    if ( canAddAmount > item.Count)
                     {
                         targetItems[i].Count = targetItems[i].Count + item.Count;
                         item.Count = 0;
@@ -199,6 +199,7 @@ public class InventoryTab
                     // 한번에 못하면 canAddAmount 만큼 병합
                     else
                     {
+
                         targetItems[i].Count = targetItems[i].Count + canAddAmount;
                         item.Count = item.Count - canAddAmount;
                     }
@@ -219,10 +220,7 @@ public class InventoryTab
         }
         else
             addFailEvent?.Invoke();
-
     }
-
-
     //리스트에 아이템 추가 (인덱스 직접 설정, 저장소 불러오기 용도)
     public void Add( SlotItem item, int index)
     {

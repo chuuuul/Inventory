@@ -187,18 +187,18 @@ public class ItemHandler : MonoBehaviour {
         }
         // 소비아이템일 때
         
-        else if ( usedItem is IConsumable)
+        else if ( usedItem is IConsum)
         {
-            IConsumable consumable = usedItem as IConsumable;
+            IConsum consum = usedItem as IConsum;
 
-            if( consumable.Usable )
+            if( consum.Usable )
             {
                 // 개수 -1
                 usedItem.Count--;
                 if (usedItem.Count < 1) 
                     usedItem.Tab.Remove(usedItem);
 
-                consumable.UseEvent?.Invoke(usedItem);
+                consum.UseEvent?.Invoke(usedItem);
                 OnItemUsed?.Invoke(usedItem);
             }
         }
