@@ -11,7 +11,13 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     [Space(10f)]
     public Image slotIcon;              //슬롯 아이콘
+
+    [Header("Text는 필요한것만 등록")]
     public Text itemCountText;          //아이템 개수 표시 텍스트
+    public Text itemDisplayNameText;    //아이템 개수 표시 텍스트
+    public Text itemDescriptionText;    //아이템 설명 표시 텍스트
+
+    [Space(10f)]
     public string allowType;            //허용되는 아이템 타입 (공백일 경우 모두 허용)
 
     internal ItemHandler itemHandler;   //아이템 핸들러
@@ -42,7 +48,6 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         // 아이템 핸들러 설정
         itemHandler = slotManager.itemHandler;
-
     }
 
 
@@ -54,11 +59,18 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             this.Item = slotItem;
             if (slotIcon != null) slotIcon.sprite = slotItem.Icon; // 아이콘 설정
+
             if (itemCountText != null)      // 개수표시
             {
                 if (slotItem.MaxCount == 1) itemCountText.text = "";
                 else itemCountText.text = slotItem.Count.ToString();
             }
+
+            if (itemDisplayNameText != null)    // 아이템 이름 표시
+                itemDisplayNameText.text = slotItem.DisplayName;
+
+            if (itemDescriptionText != null)    // 설명 표시
+                itemDescriptionText.text = slotItem.Description;
         }
         else
         {
@@ -66,6 +78,8 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             this.Item = null;
             if (slotIcon != null) slotIcon.sprite = slotManager.defaultIcon;
             if (itemCountText != null) itemCountText.text = "";
+            if (itemDisplayNameText != null) itemDisplayNameText.text = "";
+            if (itemDescriptionText != null) itemDescriptionText.text = "";
         }
     }
 
@@ -92,7 +106,6 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         itemHandler.OnSlotUp?.Invoke(eventData, this);
 
-
         //좌클릭 이벤트
         if (eventData.button == PointerEventData.InputButton.Left)
         {
@@ -110,14 +123,19 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                     itemHandler.gr.Raycast(eventData, results);
                     if (results.Count > 0) lastObject = results[0].gameObject;
 
+
+
                     if ((targetSlot = lastObject.GetComponent<InventorySlot>()) != null)    // 예외처리 안할시 에러나는 부분
+                    {
                         itemHandler.TargetItem = targetSlot.Item;
+                    }
                 }
                 // 인벤토리 외부로 드랍됨
                 catch (Exception)
                 {
                     itemHandler.DragOutEvent?.Invoke(itemHandler.SelectedItem);
                     itemHandler.ResetItems();
+
                     return;
                 }
 
@@ -141,7 +159,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                     else if ( switching ) 
                         {Switch}
                 */
-                
+
                 // 선택아이템 != 타겟아이템 일 경우 이벤트
                 if (itemHandler.SelectedItem != itemHandler.TargetItem)
                 {

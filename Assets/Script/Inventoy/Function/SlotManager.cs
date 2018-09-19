@@ -16,13 +16,6 @@ public class SlotManager : MonoBehaviour
     public bool sortByName = true;
 
     [Space(10f)]
-    [Tooltip("이미지 래이캐스트 타겟 해제 여부")]
-    public bool offRaycastImage = true;
-
-    [Tooltip("텍스트 레이캐스트 타겟 해제 여부")]
-    public bool offraycastText = true;
-
-    [Space(10f)]
     [Tooltip("아이템 없을 경우 표시 될 아이콘")]
     public Sprite defaultIcon;
 
@@ -39,16 +32,6 @@ public class SlotManager : MonoBehaviour
     private void Start()
     {
         SlotSort();     //최초정렬
-
-        //이미지 레이캐스트 타겟 해제
-        if (offRaycastImage)
-            for(int i = 0; i < slotList.Count; i++)
-                slotList[i].slotIcon.raycastTarget = false;
-
-        //텍스트 레이캐스트 타겟 해제
-        if (offraycastText)
-            for (int i = 0; i < slotList.Count; i++)
-                slotList[i].itemCountText.raycastTarget = false;
     }
 
     // 슬롯 이름 순으로 정렬 및 인덱스 지정

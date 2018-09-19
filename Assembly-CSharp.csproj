@@ -63,7 +63,7 @@
     <Compile Include="Assets\Script\Chul.cs" />
     <Compile Include="Assets\Script\Etc\FindMissingScript.cs" />
     <Compile Include="Assets\Script\Etc\LogDelete.cs" />
-    <Compile Include="Assets\Script\Etc\ShopPlanet.cs" />
+    <Compile Include="Assets\Script\Etc\ShopManager.cs" />
     <Compile Include="Assets\Script\Inventoy\Function\I_SlotItem.cs" />
     <Compile Include="Assets\Script\Inventoy\Function\InventorySlot.cs" />
     <Compile Include="Assets\Script\Inventoy\Function\Item.cs" />
@@ -73,12 +73,12 @@
     <Compile Include="Assets\Script\Inventoy\Function\SlotManager.cs" />
     <Compile Include="Assets\Script\Inventoy\Function\TabManager.cs" />
     <Compile Include="Assets\Script\Inventoy\InventoryManager.cs" />
+    <Compile Include="Assets\Script\Inventoy\Item\GetCommonItem.cs" />
+    <Compile Include="Assets\Script\Inventoy\Item\GetConsumItem.cs" />
+    <Compile Include="Assets\Script\Inventoy\Item\GetEquipmentItem.cs" />
+    <Compile Include="Assets\Script\Inventoy\Item\ItemData.cs" />
     <Compile Include="Assets\Script\Inventoy\Sub_Function\SelectedItemTracker.cs" />
-    <Compile Include="Assets\Script\Item\GetConsumItem.cs" />
-    <Compile Include="Assets\Script\Item\GetEquipmentItem.cs" />
-    <Compile Include="Assets\Script\Item\ItemData.cs" />
     <Compile Include="Assets\Script\PlayerMoving.cs" />
-    <Compile Include="Assets\Script\StoreScript.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Project/unity/Inventory/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

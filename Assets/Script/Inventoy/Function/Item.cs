@@ -61,6 +61,7 @@ public class Equipment : SlotItem, IEquipment, ITradable
 
 public class Consum : SlotItem, IConsum, ITradable
 {
+    private Consum itemFromData;
 
     public Consum(int count, int maxCount,int buyPrice,int sellPrice, string id, string name,string displayName, string description, string type, Sprite icon)
     {

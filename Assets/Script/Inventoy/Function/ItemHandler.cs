@@ -106,9 +106,10 @@ public class ItemHandler : MonoBehaviour {
         // 3. Tab 위치 변경
 
         int originIndex = selectedItem.Index;       
-        int targetIndex = targetItem.Index;         
+        int targetIndex = targetItem.Index;
 
         // 1. 아이템 정보 스위치 ( Itemtable 변경 )
+        // 인덱서 사용 public SlotItem this[int itemIndex]
         selectedItem.Tab[originIndex] = targetItem;
         targetItem.Tab[targetIndex] = selectedItem;
 
