@@ -60,7 +60,7 @@ public abstract class ContentViewer : MonoBehaviour {
 
     IEnumerator DisplayViewer(InventorySlot slot)
     {
-
+        yield return null;
 
     }
 
