@@ -8,7 +8,7 @@ public class ItemData : MonoBehaviour
 
     public static List<Consum> consumItemList = new List<Consum>();
     public static List<Equipment> equipmentItemList = new List<Equipment>();
-    public static List<CommonlItem> commonItemList = new List<CommonlItem>();
+    public static List<CommonItem> commonItemList = new List<CommonItem>();
 
     public List<Sprite> consumSpriteList = new List<Sprite>();
     public List<Sprite> equipmentSpriteList = new List<Sprite>();
@@ -54,11 +54,11 @@ public class ItemData : MonoBehaviour
 
     private void RegisterCommonItem()
     {
-        CommonlItem iron1 = new CommonlItem(1, 5, 200, 150, "3001", "iron1", "철철김철강철", "고급인력이다", "material", commonItemSpriteList[0]);
+        CommonItem iron1 = new CommonItem(1, 5, 200, 150, "3001", "iron1", "철철김철강철", "고급인력이다", "material", commonItemSpriteList[0]);
         iron1.UseEvent += (item) => UseItemMethod(iron1);
         commonItemList.Add(iron1);
 
-        CommonlItem paper1 = new CommonlItem(1, 5, 200, 150, "3002", "paper1", "컨닝페이퍼", " A+ or F", "material", commonItemSpriteList[1]);
+        CommonItem paper1 = new CommonItem(1, 5, 200, 150, "3002", "paper1", "컨닝페이퍼", " A+ or F", "material", commonItemSpriteList[1]);
         paper1.UseEvent += (item) => UseItemMethod(paper1);
         commonItemList.Add(paper1);
 

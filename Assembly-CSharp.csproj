@@ -72,11 +72,11 @@
     <Compile Include="Assets\Script\Inventoy\Function\SlotItem.cs" />
     <Compile Include="Assets\Script\Inventoy\Function\SlotManager.cs" />
     <Compile Include="Assets\Script\Inventoy\Function\TabManager.cs" />
+    <Compile Include="Assets\Script\Inventoy\InfoView.cs" />
     <Compile Include="Assets\Script\Inventoy\InventoryManager.cs" />
-    <Compile Include="Assets\Script\Inventoy\Item\GetCommonItem.cs" />
-    <Compile Include="Assets\Script\Inventoy\Item\GetConsumItem.cs" />
-    <Compile Include="Assets\Script\Inventoy\Item\GetEquipmentItem.cs" />
+    <Compile Include="Assets\Script\Inventoy\Item\GetItem.cs" />
     <Compile Include="Assets\Script\Inventoy\Item\ItemData.cs" />
+    <Compile Include="Assets\Script\Inventoy\Sub_Function\ContentViewer.cs" />
     <Compile Include="Assets\Script\Inventoy\Sub_Function\SelectedItemTracker.cs" />
     <Compile Include="Assets\Script\PlayerMoving.cs" />
     <Reference Include="UnityEditor.StandardEvents">

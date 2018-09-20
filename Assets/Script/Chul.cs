@@ -34,7 +34,6 @@ public class Chul : MonoBehaviour , IPointerUpHandler , IPointerDownHandler
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        
         gr.Raycast(eventData, raycastResult);
         Debug.Log("Down event name : " + raycastResult[raycastResult.Count - 1].GetType() );
         originPosition = transform.position;

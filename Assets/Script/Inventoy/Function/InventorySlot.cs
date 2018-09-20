@@ -124,7 +124,6 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                     if (results.Count > 0) lastObject = results[0].gameObject;
 
 
-
                     if ((targetSlot = lastObject.GetComponent<InventorySlot>()) != null)    // 예외처리 안할시 에러나는 부분
                     {
                         itemHandler.TargetItem = targetSlot.Item;

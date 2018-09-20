@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33116017542917340}
   - component: {fileID: 23545439582365350}
   - component: {fileID: 136015499386094706}
-  - component: {fileID: 114760191683087710}
+  - component: {fileID: 114063316323368888}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828913894631570}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114760191683087710
+--- !u!114 &114063316323368888
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,10 +93,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1828913894631570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e8ff913d245b1428923fc8561d9414, type: 3}
+  m_Script: {fileID: 11500000, guid: ef172c06b0923ae409d4803b95547a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  majorType: 3
   itemName: sword1
+  dropAmountRange: {x: 1, y: 1}
 --- !u!136 &136015499386094706
 CapsuleCollider:
   m_ObjectHideFlags: 1

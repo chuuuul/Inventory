@@ -9,10 +9,10 @@ using System;
 /// - IConsum : 사용시 갯수가 줄어들며 0개가 되면 탭에서 자동 제거
 /// </summary>
 
-public class CommonlItem : SlotItem, IUsable, ITradable
+public class CommonItem : SlotItem, IUsable, ITradable
 {
 
-    public CommonlItem(int count , int maxCount , int buyPrice , int sellPrice ,string id, string name, string displayName, string description, string type, Sprite icon)
+    public CommonItem(int count , int maxCount , int buyPrice , int sellPrice ,string id, string name, string displayName, string description, string type, Sprite icon)
     {
         SetCount();
         SetProperty(id, name, displayName, description, type);

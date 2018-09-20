@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour {
 
     public SlotManager invenSlotManager;
     public SlotManager shopSlotManager;
+    public Scrollbar shopScrollbar;
 
     public List<GameObject> InvenTabList = new List<GameObject>();
     public List<GameObject> ShopTabList = new List<GameObject>();
@@ -17,6 +18,7 @@ public class InventoryManager : MonoBehaviour {
         // 처음에 보여질 탭 선택
         TabChangeWithClick(InvenTabList[0]);
         TabChangeWithClick(ShopTabList[0]);
+
     }
 
     // 클릭해서 탭 변경하기
@@ -26,16 +28,22 @@ public class InventoryManager : MonoBehaviour {
         List<GameObject> TabList = new List<GameObject>();
 
 
-        // tabObject가 어느 리스트에 속해있는지 검출 ( Inven의 Tab 인지 Shop의 Tab인지 검출)
-        // 변경된 탭으로 아이템창 변경
+        // 변경된 탭으로 아이템창 변경 
+        // 클릭한탭이 인벤토리 일 때   
         if (InvenTabList.Contains(tabObject))
         {
             TabList = InvenTabList;
             invenSlotManager.Refresh(TabManager.GetTab(tabObject.name));
         }
+        // 클릭한탭이 상점탭 일 때
         else if (ShopTabList.Contains(tabObject))
         {
-            TabList = ShopTabList;
+            if (shopScrollbar != null)
+                shopScrollbar.value = 1;                //상점 탭 변경시 상점스크롤 맨위로 올려줌
+            else
+                Debug.Log("Inventory Manager에서 Shop Scroll을 캐싱하지 않았습니다.");
+
+            TabList = ShopTabList;                  
             shopSlotManager.Refresh(TabManager.GetTab(tabObject.name));
         }
         else
