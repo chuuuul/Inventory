@@ -13,7 +13,8 @@ public class ItemData : MonoBehaviour
     public List<Sprite> consumSpriteList = new List<Sprite>();
     public List<Sprite> equipmentSpriteList = new List<Sprite>();
     public List<Sprite> commonItemSpriteList = new List<Sprite>();
-    
+
+    public List<InventorySlot> targetSlotList = new List<InventorySlot>();
     private void Awake()
     {
         
@@ -49,8 +50,12 @@ public class ItemData : MonoBehaviour
         bow1.UseEvent += (item) => UseItemMethod(bow1);
         equipmentItemList.Add(bow1);
 
+        // #### Equipment의 Target Slot을 지정해야됨
+        // ex ) bow1.TargetSlot = targetSlotList[0];
 
-    } 
+
+
+    }
 
     private void RegisterCommonItem()
     {

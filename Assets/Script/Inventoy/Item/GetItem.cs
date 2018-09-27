@@ -25,7 +25,7 @@ public class GetItem : MonoBehaviour
     private CommonItem commonItem;
     private Consum consumItem;
     private Equipment equipmentItem;
-
+    private bool isExist = false;
     private void Start()
     {
         FindItemWithItemName();
@@ -50,16 +50,19 @@ public class GetItem : MonoBehaviour
                 }
             case MajorTypeEnum.commonItem:
                 {
+                    
                     for (int i = 0; i < ItemData.commonItemList.Count; i++)
                     {
                         if (ItemData.commonItemList[i].Name == itemName)
                         {
                             commonItem = ItemData.commonItemList[i];
+                            isExist = true;
                             break;
                         }
                     }
 
-                    Debug.Log("CommonItemList에 해당하는 아이템이 없습니다. 아이템 이름을 확인하세요" + itemName);
+                    if (isExist == false)
+                        Debug.Log("CommonItemList에 해당하는 아이템이 없습니다. 아이템 이름을 확인하세요" + itemName);
                     break;
                 }
 
@@ -69,10 +72,12 @@ public class GetItem : MonoBehaviour
                     if (ItemData.consumItemList[i].Name == itemName)
                     {
                         consumItem = ItemData.consumItemList[i];
+                        isExist = true;
                         break;
                     }
                 }
-                Debug.Log("ComsumItemList에 해당하는 아이템이 없습니다. 아이템 이름을 확인하세요" + itemName);
+                if (isExist == false)
+                    Debug.Log("ComsumItemList에 해당하는 아이템이 없습니다. 아이템 이름을 확인하세요" + itemName);
                 break;
 
             case MajorTypeEnum.equipment:
@@ -81,10 +86,12 @@ public class GetItem : MonoBehaviour
                     if (ItemData.equipmentItemList[i].Name == itemName)
                     {
                         equipmentItem = ItemData.equipmentItemList[i];
+                        isExist = true;
                         break;
                     }
                 }
-                Debug.Log("EquipmentItemList 해당하는 아이템이 없습니다. 아이템 이름을 확인하세요" + itemName);
+                if (isExist == false)
+                    Debug.Log("EquipmentItemList 해당하는 아이템이 없습니다. 아이템 이름을 확인하세요" + itemName);
                 break;
         }
     }
@@ -124,8 +131,9 @@ public class GetItem : MonoBehaviour
                     inventoryTab.Add(item, true);
                     break;
                 }
-
         }
+
+
 
         SlotManager.RefreshAll();           //#### 아이템 먹을때는 인벤토리 켜져있을때만 새로고침하면됨
         Destroy(this.gameObject);

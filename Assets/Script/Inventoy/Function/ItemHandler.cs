@@ -15,8 +15,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SlotManager))]
 public class ItemHandler : MonoBehaviour {
 
-    public static List<ItemHandler> ItemhandlerList = new List<ItemHandler>() ;
-
     // 아이템 핸들러 리스트 , 딕셔너리 ( 오브젝트명 )
     public static List<ItemHandler> HandlerList { get; private set; } = new List<ItemHandler>();
     public static Dictionary<string, ItemHandler> HandlerDiction { get; internal set; } = new Dictionary<string, ItemHandler>();

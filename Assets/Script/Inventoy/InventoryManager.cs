@@ -12,6 +12,9 @@ public class InventoryManager : MonoBehaviour {
     public List<GameObject> InvenTabList = new List<GameObject>();
     public List<GameObject> ShopTabList = new List<GameObject>();
 
+    public int money = 1000;
+    public Text moneyText;
+   
     private void Start()
     {
         MakeShop();
