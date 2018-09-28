@@ -56,15 +56,17 @@ public class TabManager : MonoBehaviour
     }
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
 public class InventoryTab
 {
     public string TabName { get; }                  // 탭 이름
     public int Capacity { get; private set; }       // 최대 수용량
 
     public List<SlotItem> ItemTable { get; private set; }   // 아이템 리스트
-
-
-
+    
 
     // 생성자 탭 이름과 수용량 설정
     public InventoryTab(string tabName, int capacity)
@@ -78,7 +80,6 @@ public class InventoryTab
             ItemTable.Add(null);
         }
     }
-
 
     // 아이템 인덱스로 아이템 접근 및 설정 (인덱서)
     public SlotItem this[int itemIndex]             
@@ -111,14 +112,9 @@ public class InventoryTab
             {
                 items.Add(ItemTable[i]);
             }
-
-
         }
         return items.ToArray();
-
     }
-    
-
 
     // 모든 아이템 리스트로 반환  // List로 모두 반환     // 아이템 저장용 
     public SlotItem[] GetItemAll()
@@ -138,7 +134,6 @@ public class InventoryTab
     //현재 아이템 개수
     public int Count
     {
-
         get
         {
             int count=0;
@@ -149,7 +144,6 @@ public class InventoryTab
             }
             return count;
         }
-
     }
 
     // 비었는지 반환 true => 비었다
@@ -254,3 +248,5 @@ public class InventoryTab
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////

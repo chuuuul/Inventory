@@ -5,10 +5,15 @@ using System;
 
 public class ItemData : MonoBehaviour
 {
-
-    public static List<Consum> consumItemList = new List<Consum>();
-    public static List<Equipment> equipmentItemList = new List<Equipment>();
-    public static List<CommonItem> commonItemList = new List<CommonItem>();
+    // Count : 개수 / maxCount : 최대개수 / buyPrice : 구매가격 / sellPrice : 판매가격
+    // id : 아이템 찾을때 인덱서로 사용하는 아이템 아이디 (아주 가끔?? 사용)
+    // name : 실질적으로 같은 아이템인지 비교할때 사용하는 이름
+    // display naem : 화면표시에 사용하는 아이템 이름
+    // description : 아이템 설명
+    // type : 아이템 타입, 특정슬롯에 타입이 맞는 아이템만 들어갈수 있게끔 (type : weapon / shoes
+    public List<Consum> consumItemList = new List<Consum>();
+    public List<Equipment> equipmentItemList = new List<Equipment>();
+    public List<CommonItem> commonItemList = new List<CommonItem>();
 
     public List<Sprite> consumSpriteList = new List<Sprite>();
     public List<Sprite> equipmentSpriteList = new List<Sprite>();
@@ -25,7 +30,6 @@ public class ItemData : MonoBehaviour
 
     private void RegisterConsumItem()
     {
-
         Consum hp1 = new Consum(1, 5, 100, 90, "1001", "hp1", "초급 체력포션", "hp +50", "potion", consumSpriteList[0]);
         hp1.UseEvent += (item) => UseItemMethod(hp1);
         consumItemList.Add(hp1);
@@ -33,7 +37,6 @@ public class ItemData : MonoBehaviour
         Consum mp1 = new Consum(1, 5, 100, 90, "1002", "mp1", "초급 마나포션", "mp +50", "potion", consumSpriteList[1]);
         hp1.UseEvent += (item) => UseItemMethod(hp1);
         consumItemList.Add(mp1);
-
     }
 
     private void RegisterEquipmentItem()
@@ -74,8 +77,34 @@ public class ItemData : MonoBehaviour
         Debug.Log("Use : " + item.DisplayName);
     }
 
+    public static CommonItem CommonItemClone(int index)
+    {
+        CommonItem newItem = new CommonItem(commonItemList[index].Count, commonItemList[index].MaxCount
+            , commonItemList[index].BuyPrice, commonItemList[index].SellPrice, commonItemList[index].Id
+            , commonItemList[index].Name, commonItemList[index].DisplayName, commonItemList[index].Description
+            , commonItemList[index].Type, commonItemList[index].Icon);
+
+        return newItem;
+    }
+
+    public static Consum ConsumItemClone(int index)
+    {
+        Consum newItem = new Consum(consumItemList[index].Count, consumItemList[index].MaxCount, consumItemList[index].BuyPrice
+            , consumItemList[index].SellPrice, consumItemList[index].Id, consumItemList[index].Name
+            , consumItemList[index].DisplayName, consumItemList[index].Description, consumItemList[index].Type
+            , consumItemList[index].Icon);
+
+        return newItem;
+    }
     
+    
+    public static Equipment EquipmentItemClone(int index)
+{
+        Equipment newItem = new Equipment(equipmentItemList[index].BuyPrice, equipmentItemList[index].SellPrice
+            ,equipmentItemList[index].Id, equipmentItemList[index].Name, equipmentItemList[index].DisplayName
+            , equipmentItemList[index].Description, equipmentItemList[index].Type, equipmentItemList[index].Icon);
 
-
+        return newItem;
+    }
 
 }

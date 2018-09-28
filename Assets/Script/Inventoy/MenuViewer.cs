@@ -35,6 +35,7 @@ public class MenuViewer : ContentViewer {
             ViewerEnable(slot);
 
     }
+
     protected override void OnDisappear(PointerEventData eventData, InventorySlot slot)
     {
     }
@@ -45,6 +46,7 @@ public class MenuViewer : ContentViewer {
         this.slot = slot;   //슬롯 등록
         SlotItem item = slot.Item;      //아이템 가져오기
 
+        Debug.Log(slot.Item.Tab.TabName);
         // Tab에 따라서 MenuViewer 위치 변경 및 버튼 변경
         if (inventory.ShopTabList.Exists(x => x.name == slot.Item.Tab.TabName))
         {
@@ -82,7 +84,7 @@ public class MenuViewer : ContentViewer {
     }
 
 
-    private void Use()
+    public void Use()
     {
         if( slot != null )
         {
@@ -92,7 +94,7 @@ public class MenuViewer : ContentViewer {
         }
     }
 
-    private void Remove()
+    public void Remove()
     {
         if (slot != null)
         {
@@ -108,7 +110,7 @@ public class MenuViewer : ContentViewer {
         }
 
     }
-    private void Sell()
+    public void Sell()
     {
         if (slot != null)
         {
@@ -119,11 +121,10 @@ public class MenuViewer : ContentViewer {
             Cancel();
         }
 
-    }
+    } 
 
 
-
-    private void Cancel()
+    public void Cancel()
     {
         ViewerDisable();
         slot = null;

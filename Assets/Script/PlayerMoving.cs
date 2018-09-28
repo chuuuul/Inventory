@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMoving : MonoBehaviour
 {
     public float speed = 5.0f;
-
+    
     private void Update()
 	{
         MovePlayer();

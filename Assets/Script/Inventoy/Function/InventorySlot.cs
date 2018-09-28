@@ -151,6 +151,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 }
 
                 /*
+                 *  순서도 *
                  타깃이 없다 -> 이동
                  타깃이 있다 
                     if (merging, allow type) 

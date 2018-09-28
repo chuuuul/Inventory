@@ -47,13 +47,15 @@ public abstract class ContentViewer : MonoBehaviour {
 
     private void Start()
     {
+        //이벤트 등록 함수 호출 (오버라이딩)
         EventCall();
     }
 
     //뷰어 활성화
     public void ViewerEnable(InventorySlot slot)
     {
-        if (disappearViewer == null)              // #### disappearViewer == 0이랑 같은 문법인가??
+        IsEnabled = true;
+        if (disappearViewer != null)             
             StopCoroutine(disappearViewer);
         displayViewer = DisplayViewer(slot);
         StartCoroutine(displayViewer);
