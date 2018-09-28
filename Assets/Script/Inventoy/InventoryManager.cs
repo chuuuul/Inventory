@@ -86,28 +86,21 @@ public class InventoryManager : MonoBehaviour {
         InventoryTab ShopFirstTab = TabManager.GetTab("ShopFirstTab");
         InventoryTab ShopSecondTab = TabManager.GetTab("ShopSecondTab");
 
-        ShopFirstTab.Add(ItemData.consumItemList[0]);
-        ShopFirstTab.Add( ItemData.consumItemList[1] );
-
-        ShopSecondTab.Add( ItemData.equipmentItemList[0] );
-        ShopSecondTab.Add( ItemData.equipmentItemList[1] );
-        ShopSecondTab.Add( ItemData.equipmentItemList[2] );
-        ShopSecondTab.Add( ItemData.commonItemList[0] );
-        ShopSecondTab.Add( ItemData.commonItemList[1] );
-
-        //#### 버버버버버ㅓ그,그그그ㅡ그그그 왜 상점에있는것까지 장애가 나는가 깊은복사의 깊은빡침
-        // ItemData를 구조체로만든다..
-        InventoryTab aa = TabManager.GetTab("InvenFirstTab");
-
- 
         
-        Consum newItem = new Consum(1, ItemData.consumItemList[0].MaxCount, ItemData.consumItemList[0].BuyPrice,
-            ItemData.consumItemList[0].SellPrice, ItemData.consumItemList[0].Id, ItemData.consumItemList[0].Name, ItemData.consumItemList[0].DisplayName,
-            ItemData.consumItemList[0].Description, ItemData.consumItemList[0].Type, ItemData.consumItemList[0].Icon);
+        ShopFirstTab.Add(ItemData.ConsumItemClone(0));
+        ShopFirstTab.Add(ItemData.ConsumItemClone(1));
 
-        aa.Add(newItem, 19);
-        //aa.Add(ItemData.consumItemList[0], 19);
-        aa.Add(ItemData.equipmentItemList[0], 13);
+        ShopSecondTab.Add( ItemData.EquipmentItemClone(0) );
+        ShopSecondTab.Add( ItemData.EquipmentItemClone(1) );
+        ShopSecondTab.Add( ItemData.EquipmentItemClone(2) );
+        ShopSecondTab.Add( ItemData.CommonItemClone(0) );
+        ShopSecondTab.Add( ItemData.CommonItemClone(1) );
+
+
+        InventoryTab aa = TabManager.GetTab("InvenFirstTab");
+        
+        aa.Add(ItemData.ConsumItemClone(0), 19);
+        aa.Add(ItemData.EquipmentItemClone(0), 13);
         
 
     }

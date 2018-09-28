@@ -11,15 +11,15 @@ public class ItemData : MonoBehaviour
     // display naem : 화면표시에 사용하는 아이템 이름
     // description : 아이템 설명
     // type : 아이템 타입, 특정슬롯에 타입이 맞는 아이템만 들어갈수 있게끔 (type : weapon / shoes
-    public List<Consum> consumItemList = new List<Consum>();
-    public List<Equipment> equipmentItemList = new List<Equipment>();
-    public List<CommonItem> commonItemList = new List<CommonItem>();
+    public static List<Consum> consumItemList = new List<Consum>();
+    public static List<Equipment> equipmentItemList = new List<Equipment>();
+    public static List<CommonItem> commonItemList = new List<CommonItem>();
 
     public List<Sprite> consumSpriteList = new List<Sprite>();
     public List<Sprite> equipmentSpriteList = new List<Sprite>();
     public List<Sprite> commonItemSpriteList = new List<Sprite>();
 
-    public List<InventorySlot> targetSlotList = new List<InventorySlot>();
+    public List<InventorySlot> targetSlotList = new List<InventorySlot>();  // type을 설정할 타겟슬롯
     private void Awake()
     {
         

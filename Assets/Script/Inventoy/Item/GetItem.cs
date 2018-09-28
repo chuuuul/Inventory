@@ -119,9 +119,7 @@ public class GetItem : MonoBehaviour
                     break;
                 }
         }
-
-
-
+        
         SlotManager.RefreshAll();           //#### 아이템 먹을때는 인벤토리 켜져있을때만 새로고침하면됨
         Destroy(this.gameObject);
 
