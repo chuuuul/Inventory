@@ -66,7 +66,8 @@ public class InventoryTab
     public int Capacity { get; private set; }       // 최대 수용량
 
     public List<SlotItem> ItemTable { get; private set; }   // 아이템 리스트
-    
+
+
 
     // 생성자 탭 이름과 수용량 설정
     public InventoryTab(string tabName, int capacity)
@@ -171,6 +172,14 @@ public class InventoryTab
     //리스트에 아이템 추가 (자동 병합)
     public void Add ( SlotItem item ,bool autoMerge = true, Action addFailEvent = null )
     {
+        if (item is Consum)         //#### 강제형변환...
+            item = item as Consum;
+        else if (item is Equipment)
+            item = item as Equipment;
+        else if (item is CommonItem)
+            item = item as CommonItem;
+
+
         if ( item.MaxCount > 1 && autoMerge)
         {
             // targetItem : 합칠 대상의 인벤토리 // item : 추가할 아이템 정보
