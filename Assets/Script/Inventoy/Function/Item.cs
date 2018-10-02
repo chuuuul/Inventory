@@ -16,7 +16,6 @@ public class CommonItem : SlotItem, IUsable, ITradable
     {
         SetCount();
         SetProperty(id, name, displayName, description, type);
-        SetPrice(buyPrice, sellPrice);
         Icon = icon;
         Usable = true;
     }

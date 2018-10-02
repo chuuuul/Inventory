@@ -86,9 +86,9 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
         itemHandler.OnSlotDown?.Invoke(eventData, this);
-        
+
         //좌클릭 이벤트
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if(eventData.button == PointerEventData.InputButton.Left)
         {
             //선택 아이템 등록(이동 활성화시)
             if (itemHandler.movable)

@@ -43,7 +43,6 @@ public abstract class ContentViewer : MonoBehaviour {
         group.alpha = 0;
         group.interactable = false;
         group.blocksRaycasts = false;
-
     }
 
     private void Start()
@@ -55,7 +54,6 @@ public abstract class ContentViewer : MonoBehaviour {
     //뷰어 활성화
     public void ViewerEnable(InventorySlot slot)
     {
-        
         IsEnabled = true;
         if (disappearViewer != null)             
             StopCoroutine(disappearViewer);
