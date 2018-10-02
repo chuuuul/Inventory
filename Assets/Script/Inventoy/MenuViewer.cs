@@ -14,7 +14,10 @@ public class MenuViewer : ContentViewer {
 
     private InventorySlot slot;
 
-	// 슬롯을 클릭했을때 EventCall
+    private enum Widget { NoSelect, Shop, Inventory, QuickSlot };
+    private Widget SelectWidget = Widget.NoSelect;
+
+    // 슬롯을 클릭했을때 EventCall
     protected override void EventCall()
     {
         
@@ -46,21 +49,23 @@ public class MenuViewer : ContentViewer {
         this.slot = slot;   //슬롯 등록
         SlotItem item = slot.Item;      //아이템 가져오기
 
-        Debug.Log(slot.Item.Tab.TabName);
         // Tab에 따라서 MenuViewer 위치 변경 및 버튼 변경
         if (inventory.ShopTabList.Exists(x => x.name == slot.Item.Tab.TabName))
         {
+            SelectWidget = Widget.Shop;
             anchor = ViewerAnchor.BottomRight;
             useText.text = "구매";
             removeText.text = "버리기";
             removeButton.interactable = false;
             sellButton.interactable = false;
-            Debug.Log("Wow");
 
         }
         /*
+         * 미구현
         else if (inventory.QuickSlotTabList.Exists(x => x.name == slot.Item.Tab.TabName))
         {
+        
+            SelectWidget = Widget.QuickSlot;
             anchor = ViewerAnchor.TopRight;
             removeText.text = "착용 해제";
             removeButton.interactable = true;
@@ -69,7 +74,9 @@ public class MenuViewer : ContentViewer {
         */
         else if (inventory.InvenTabList.Exists(x => x.name == slot.Item.Tab.TabName))
         {
-            anchor = ViewerAnchor.BottomRight;
+
+            SelectWidget = Widget.Inventory;
+            anchor = ViewerAnchor.BottomLeft;
             removeText.text = "버리기";
 
             if (item is Equipment)
@@ -79,18 +86,39 @@ public class MenuViewer : ContentViewer {
 
             removeButton.interactable = true;
             sellButton.interactable = true;
-            Debug.Log("Wow22");
         }
     }
 
 
     public void Use()
     {
-        if( slot != null )
+        if (slot != null)
         {
-            slot.itemHandler.Use(slot, slot.Item);
-            SlotManager.RefreshAll();
-            Cancel();
+            if (SelectWidget == Widget.Shop)
+            {
+                // 아이템을 구매하고 각각 다른 인벤토리에 저장할경우 inventory.InvenTabList[0].name 를 수정해서 사용한다
+                if (slot.Item is Consum)
+                    slot.Item = ItemData.ConsumItemClone(slot.Item.Name);
+
+                else if (slot.Item is Equipment)
+                    slot.Item = ItemData.EquipmentItemClone(slot.Item.Name);
+
+                else if (slot.Item is CommonItem)
+                    slot.Item = ItemData.CommonItemClone(slot.Item.Name);
+
+                ShopHelper.Buy(ref inventory.money, slot.Item, TabManager.GetTab(inventory.InvenTabList[0].name), () => Debug.Log("돈이 부족합니다"), () => Debug.Log("탭이 꽉찼습니다"));
+                inventory.moneyText.text = inventory.money.ToString();
+                SlotManager.RefreshAll();
+
+                Cancel();
+            }
+            else
+            {
+                Debug.Log("??");
+                slot.itemHandler.Use(slot, slot.Item);
+                SlotManager.RefreshAll();
+                Cancel();
+            }
         }
     }
 
@@ -114,7 +142,7 @@ public class MenuViewer : ContentViewer {
     {
         if (slot != null)
         {
-            //shopHelper.Sell(ref inventory.money, slot.Item);
+            ShopHelper.Sell(ref inventory.money, slot.Item);
 
             inventory.moneyText.text = inventory.money.ToString();
             SlotManager.RefreshAll();
@@ -128,5 +156,6 @@ public class MenuViewer : ContentViewer {
     {
         ViewerDisable();
         slot = null;
+        SelectWidget = Widget.NoSelect;
     }
 }

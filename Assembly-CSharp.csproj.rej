@@ -1,0 +1,31 @@
+diff a/Assembly-CSharp.csproj b/Assembly-CSharp.csproj	(rejected hunks)
+@@ -76,9 +76,29 @@
+     <Compile Include="Assets\Script\Inventoy\InventoryManager.cs" />
+     <Compile Include="Assets\Script\Inventoy\Item\GetItem.cs" />
+     <Compile Include="Assets\Script\Inventoy\Item\ItemData.cs" />
++    <Compile Include="Assets\Script\Inventoy\MenuViewer.cs" />
+     <Compile Include="Assets\Script\Inventoy\Sub_Function\ContentViewer.cs" />
+     <Compile Include="Assets\Script\Inventoy\Sub_Function\SelectedItemTracker.cs" />
++    <Compile Include="Assets\Script\Inventoy\Sub_Function\ShopHelper.cs" />
++    <Compile Include="Assets\Script\Inventoy\Sub_Function\UserInput.cs" />
+     <Compile Include="Assets\Script\PlayerMoving.cs" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
++    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
++    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+     <Reference Include="UnityEditor.StandardEvents">
+       <HintPath>D:/Project/unity/Inventory/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+     </Reference>

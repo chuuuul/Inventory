@@ -79,6 +79,7 @@
     <Compile Include="Assets\Script\Inventoy\MenuViewer.cs" />
     <Compile Include="Assets\Script\Inventoy\Sub_Function\ContentViewer.cs" />
     <Compile Include="Assets\Script\Inventoy\Sub_Function\SelectedItemTracker.cs" />
+    <Compile Include="Assets\Script\Inventoy\Sub_Function\ShopHelper.cs" />
     <Compile Include="Assets\Script\PlayerMoving.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Project/unity/Inventory/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
