@@ -64,6 +64,7 @@
     <Compile Include="Assets\Script\Etc\FindMissingScript.cs" />
     <Compile Include="Assets\Script\Etc\LogDelete.cs" />
     <Compile Include="Assets\Script\Etc\ShopManager.cs" />
+    <Compile Include="Assets\Script\Etc\WidgetToggle.cs" />
     <Compile Include="Assets\Script\Inventoy\Function\I_SlotItem.cs" />
     <Compile Include="Assets\Script\Inventoy\Function\InventorySlot.cs" />
     <Compile Include="Assets\Script\Inventoy\Function\Item.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Script\Inventoy\InfoView.cs" />
     <Compile Include="Assets\Script\Inventoy\InventoryManager.cs" />
     <Compile Include="Assets\Script\Inventoy\Item\GetItem.cs" />
+    <Compile Include="Assets\Script\Inventoy\Item\GetMoney.cs" />
     <Compile Include="Assets\Script\Inventoy\Item\ItemData.cs" />
     <Compile Include="Assets\Script\Inventoy\MenuViewer.cs" />
     <Compile Include="Assets\Script\Inventoy\Sub_Function\ContentViewer.cs" />
