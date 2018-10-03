@@ -7,7 +7,7 @@ public class GetItem : MonoBehaviour
 {
 
 
-    public enum MajorTypeEnum { none, commonItem, consum, equipment, }
+    public enum MajorTypeEnum { none, commonItem, consum, equipment }
     [Header("대분류 설정")]
     public MajorTypeEnum majorType;
 

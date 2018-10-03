@@ -52,6 +52,7 @@ public class TabManager : MonoBehaviour
         {
             Debug.LogError("인벤토리 탭 : 인덱스 범위를 초과하였습니다.");
             return null;
+            
         }
     }
 }

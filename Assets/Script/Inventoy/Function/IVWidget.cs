@@ -1,11 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System
+
+
+
 
 public class IVWidget : MonoBehaviour {
-    
-	
-	public GameObject slotPrefab;               // 오리지널 슬롯
+
+    [Serializable]
+    public class WidgetProperty
+    {
+
+    }
+
+
+    public GameObject slotPrefab;               // 오리지널 슬롯
     //public List <GameObject> TabList = new List<GameObject>(); // 슬롯을 생성할 탭들을 설정
 
     
@@ -22,22 +32,13 @@ public class IVWidget : MonoBehaviour {
 
     [Tooltip("가로 세로 슬롯 개수")]
     public Vector2 slotCount = new Vector2(5, 7);
-
-    //[Range(0.1f, 1.0f)]
-    //public float itemSizeRate = 0.8f;           // 아이템 사이즈 비율
-    
-
-    //private float itemSizeX;					// 아이템 X 사이즈
-	//private float itemSizeY;					// 아이템 Y 사이즈
 	
 	private float invenWidth;                   // 인벤 가로 길이
 	private float invenHeight;                  // 인벤 세로 길이
-    //private List<GameObject> allSlot = new List<GameObject>();      // 모든 슬롯이 담겨있는 리스트.      
+   
 
     private void Awake()
 	{
-        //itemSizeX = slotSize.x * itemSizeRate;
-		//itemSizeY = slotSize.y * itemSizeRate;
 		MakeFrame();                            // 틀생성
     }
 
@@ -53,20 +54,6 @@ public class IVWidget : MonoBehaviour {
 			makeSlotX = initPosition.x;								// 다음줄 만들때 다시 x초기 위치
 			for (int x = 0; x < slotCount.x; x++)
 			{
-
-                /*
-                 ################### 슬롯 만드는 부분 삭제 ##########################
-				GameObject slot = Instantiate(slotPrefab) as GameObject;    // 가로 x 세로 갯수만큼 슬롯 생성
-                slot.GetComponent<InventorySlot>().slotManager = gameObject.GetComponent<SlotManager>();
-                SlotSetting(slot,x,y,makeSlotX,makeSlotY);					// 슬롯 Setting
-                
-
-				RectTransform itemRect = slot.transform.GetChild(0).GetComponent<RectTransform>();
-				SizeSetting(itemRect,itemSizeX,itemSizeY);		// 아이템의 사이즈 조절
-				
-				allSlot.Add(slot);								// 모든 슬롯 List에 추가
-                */
-
                 makeSlotX = makeSlotX + slotGapDistance.x + slotSize.x;	// 다음 칸 만들위치 설정( 이전위치 + 가로길이 + 간격 )
 
 			}

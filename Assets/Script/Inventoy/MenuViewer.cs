@@ -106,8 +106,8 @@ public class MenuViewer : ContentViewer {
                 else if (slot.Item is CommonItem)
                     slot.Item = ItemData.CommonItemClone(slot.Item.Name);
 
-                ShopHelper.Buy(ref inventory.money, slot.Item, TabManager.GetTab(inventory.InvenTabList[0].name), () => Debug.Log("돈이 부족합니다"), () => Debug.Log("탭이 꽉찼습니다"));
-                inventory.moneyText.text = inventory.money.ToString();
+                ShopHelper.Buy(ref InventoryManager.money, slot.Item, TabManager.GetTab(inventory.InvenTabList[0].name), () => Debug.Log("돈이 부족합니다"), () => Debug.Log("탭이 꽉찼습니다"));
+                InventoryManager.MoneyRefresh();
                 SlotManager.RefreshAll();
 
                 Cancel();
@@ -142,9 +142,9 @@ public class MenuViewer : ContentViewer {
     {
         if (slot != null)
         {
-            ShopHelper.Sell(ref inventory.money, slot.Item);
+            ShopHelper.Sell(ref InventoryManager.money, slot.Item);
 
-            inventory.moneyText.text = inventory.money.ToString();
+            InventoryManager.MoneyRefresh();
             SlotManager.RefreshAll();
             Cancel();
         }

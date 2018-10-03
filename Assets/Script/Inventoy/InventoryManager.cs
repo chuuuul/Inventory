@@ -12,19 +12,33 @@ public class InventoryManager : MonoBehaviour {
     public List<GameObject> InvenTabList = new List<GameObject>();
     public List<GameObject> ShopTabList = new List<GameObject>();
 
-    public int money = 1000;
+    public static int money = 1000;                             
+    public static List<Text> moneyTextList = new List<Text>();
     public Text moneyText;
    
 
-
     private void Start()
     {
+        if (moneyText == null)
+        {
+            Debug.Log("Inventory Manager에 moneytext 를 추가하세요");
+        }
+        moneyTextList.Add(moneyText);
+        MoneyRefresh();
+
         MakeShop();
         // 처음에 보여질 탭 선택
         TabChangeWithClick(InvenTabList[0]);
         TabChangeWithClick(ShopTabList[0]);
-
     }
+
+
+    public static void MoneyRefresh ()
+    {
+        for (int i = 0; i < moneyTextList.Count; i++)
+            moneyTextList[i].text = money.ToString();
+    }
+
 
     // 클릭해서 탭 변경하기
     public void TabChangeWithClick (GameObject tabObject)
@@ -48,7 +62,7 @@ public class InventoryManager : MonoBehaviour {
             else
                 Debug.Log("Inventory Manager에서 Shop Scroll을 캐싱하지 않았습니다.");
 
-            TabList = ShopTabList;                  
+            TabList = ShopTabList;
             shopSlotManager.Refresh(TabManager.GetTab(tabObject.name));
         }
         else
