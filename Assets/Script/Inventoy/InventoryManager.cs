@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour {
 
     public SlotManager invenSlotManager;
     public SlotManager shopSlotManager;
-    public Scrollbar shopScrollbar;
+    public List<ScrollRect> scrollRect = new List<ScrollRect>();
 
     public List<GameObject> InvenTabList = new List<GameObject>();
     public List<GameObject> ShopTabList = new List<GameObject>();
@@ -15,14 +15,20 @@ public class InventoryManager : MonoBehaviour {
     public static int money = 1000;                             
     public static List<Text> moneyTextList = new List<Text>();
     public Text moneyText;
-   
 
     private void Start()
     {
+        //스크롤 맨위로 올려줌
+        if (scrollRect != null)
+            for(int i = 0; i < scrollRect.Count; i++)
+                scrollRect[i].verticalNormalizedPosition = 1;
+
         if (moneyText == null)
         {
             Debug.Log("Inventory Manager에 moneytext 를 추가하세요");
         }
+
+
         moneyTextList.Add(moneyText);
         MoneyRefresh();
 
@@ -57,11 +63,6 @@ public class InventoryManager : MonoBehaviour {
         // 클릭한탭이 상점탭 일 때
         else if (ShopTabList.Contains(tabObject))
         {
-            if (shopScrollbar != null)
-                shopScrollbar.value = 1;                //상점 탭 변경시 상점스크롤 맨위로 올려줌
-            else
-                Debug.Log("Inventory Manager에서 Shop Scroll을 캐싱하지 않았습니다.");
-
             TabList = ShopTabList;
             shopSlotManager.Refresh(TabManager.GetTab(tabObject.name));
         }
@@ -111,10 +112,10 @@ public class InventoryManager : MonoBehaviour {
         ShopSecondTab.Add( ItemData.CommonItemClone(1) );
 
 
-        InventoryTab aa = TabManager.GetTab("InvenFirstTab");
+        InventoryTab InvenFirstTab = TabManager.GetTab("InvenFirstTab");
         
-        aa.Add(ItemData.ConsumItemClone(0), 19);
-        aa.Add(ItemData.EquipmentItemClone(0), 13);
+        InvenFirstTab.Add(ItemData.ConsumItemClone(0), 19);
+        InvenFirstTab.Add(ItemData.EquipmentItemClone(0), 13);
         
 
     }

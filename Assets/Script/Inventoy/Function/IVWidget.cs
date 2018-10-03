@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System
-
+using System;
 
 
 
@@ -11,82 +10,84 @@ public class IVWidget : MonoBehaviour {
     [Serializable]
     public class WidgetProperty
     {
+        public GameObject slotPrefab;               // 오리지널 슬롯
+
+        [Header("WidgetSizeEdit")]
+        [Tooltip("왼쪽 위 모서리에서 띄어질 간격")]
+        [Space(5)]
+        public Vector2 firstPosition = new Vector2();
+
+        
+        [Tooltip("각 슬롯 간의 거리")]
+        public Vector2 slotGapDistance = new Vector2();
+
+        [Tooltip("가로 세로 슬롯 개수")]
+        public Vector2 slotCount = new Vector2();
+
+        [Tooltip("etc 추가 길이 ( ex 상점 Title 영역 / 돈 표시 영역 합한 크기")]
+        public Vector2 etcSize = new Vector2();
+
+        [HideInInspector]
+        public Vector2 invenSize;                   // 인벤 가로 길이
+
+
+        [HideInInspector]
+        public Vector2 slotSize;                    // 프레펩 슬롯 사이즈
 
     }
 
 
-    public GameObject slotPrefab;               // 오리지널 슬롯
-    //public List <GameObject> TabList = new List<GameObject>(); // 슬롯을 생성할 탭들을 설정
+    public List<WidgetProperty> widgetList = new List<WidgetProperty>();
 
-    
-    [Header("WidgetSizeEdit")]
-    [Tooltip("초기 x,y 위치 ( 왼쪽 위 대각선 기준 )")]
-    [Space(5)]
-    public Vector2 initPosition = new Vector2(10, 10);
+    private RectTransform objectRect;
 
-    [Tooltip("각 슬롯의 크기")]
-    public Vector2 slotSize = new Vector2(75, 75);
-
-    [Tooltip("각 슬롯 간의 거리")]
-    public Vector2 slotGapDistance = new Vector2(10, 10);
-
-    [Tooltip("가로 세로 슬롯 개수")]
-    public Vector2 slotCount = new Vector2(5, 7);
-	
-	private float invenWidth;                   // 인벤 가로 길이
-	private float invenHeight;                  // 인벤 세로 길이
-   
 
     private void Awake()
 	{
-		MakeFrame();                            // 틀생성
-    }
+        objectRect = GetComponent<RectTransform>();
 
-	void MakeFrame()
-	{
-		InvenSizeSetting();			// 인벤토리 Widget 설정
+        for (int i = 0; i < widgetList.Count; i++)
+        {
+            
+            if (widgetList[i].slotPrefab == null)
+                Debug.Log("slot prefab을 등록하세요");
+            
+            // 슬롯 프레펩 사이즈 가져옴
+            widgetList[i].slotSize = widgetList[i].slotPrefab.GetComponent<RectTransform>().sizeDelta;
 
-		float makeSlotX = initPosition.x;								// 만들 X 초기 위치
-		float makeSlotY =  invenHeight - initPosition.y - slotSize.y;  // 만들 Y 초기 위치
+            InvenSizeSetting(i);			// 인벤토리 Widget 설정
+        }
+
         
-		for (int y = 0; y < slotCount.y; y++)					// 가로세로에 슬롯 생성 
-		{
-			makeSlotX = initPosition.x;								// 다음줄 만들때 다시 x초기 위치
-			for (int x = 0; x < slotCount.x; x++)
-			{
-                makeSlotX = makeSlotX + slotGapDistance.x + slotSize.x;	// 다음 칸 만들위치 설정( 이전위치 + 가로길이 + 간격 )
-
-			}
-
-			makeSlotY = makeSlotY - slotGapDistance.y - slotSize.y;		// 다음 칸 만들위치 설정 -( 이전위치 + 가로길이 + 간격 )
-
-		}
     }
 
-    void InvenSizeSetting()
+    private void Start()
     {
-        invenWidth = (slotCount.x * slotSize.x) + ( (slotCount.x - 1 ) * slotGapDistance.x ) + initPosition.x * 2;        // 인벤 가로 길이
-        invenHeight = (slotCount.y * slotSize.y) + ((slotCount.y - 1) * slotGapDistance.y) + initPosition.y * 2;       // 인벤 가로 길이
-        SizeSetting(GetComponent<RectTransform>(), invenWidth, invenHeight);
+        MakeFrame(0);    // 틀생성
     }
 
-    void SlotSetting(GameObject slot,int x, int y,float makeSlotX,float makeSlotY)
-	{
-		RectTransform slotRect = slot.GetComponent<RectTransform>();
 
-		slot.name = "Slot_X_" + x + "Y_" + y;								// 생성된 슬롯 이름 지정
-		slot.transform.SetParent(this.transform);								// 부모 지정
-        slotRect.localPosition = new Vector3(makeSlotX, makeSlotY, 0);		// 위치 지정
+    private void InvenSizeSetting( int index )
+    {
+        // 인벤 가로 길이
+        // {가로 슬롯수 x 슬롯 사이즈} + {(가로 슬롯수 - 1) x 슬롯 간격} + { 가로 처음값 x 2 } + etc가로
+        widgetList[index].invenSize.x = (widgetList[index].slotCount.x * widgetList[index].slotSize.x) 
+                                    + ( (widgetList[index].slotCount.x - 1 ) * widgetList[index].slotGapDistance.x ) 
+                                    + widgetList[index].firstPosition.x * 2 + widgetList[index].etcSize.x;
 
-       
+        // 인벤 가로 길이
+        widgetList[index].invenSize.y = (widgetList[index].slotCount.y * widgetList[index].slotSize.y) 
+                                    + ((widgetList[index].slotCount.y - 1) * widgetList[index].slotGapDistance.y) 
+                                    + widgetList[index].firstPosition.y * 2 + widgetList[index].etcSize.y;      
+    }
 
-        SizeSetting(slotRect, slotSize.x, slotSize.y);						// 슬롯의 사이즈 조절
-	}
-
-    void SizeSetting(RectTransform objectRect, float setSizeX, float setSizeY)
+    public void MakeFrame(int index)
     {
         objectRect.localScale = Vector3.one;                                              // scale 은 1 , 1 , 1 로 설정
-        objectRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, setSizeX);   // 가로 사이즈 설정
-        objectRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, setSizeY);     // 세로 사이즈 설정
+        objectRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, widgetList[index].invenSize.x);   // 가로 사이즈 설정
+        objectRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, widgetList[index].invenSize.y);     // 세로 사이즈 설정
+        //size delta로 구현하면?
+
     }
+
 }
