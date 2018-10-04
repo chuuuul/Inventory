@@ -7,10 +7,12 @@ public class InventoryManager : MonoBehaviour {
 
     public SlotManager invenSlotManager;
     public SlotManager shopSlotManager;
-    public List<ScrollRect> scrollRect = new List<ScrollRect>();
+    public SlotManager quickSlotManager;
+    public List<ScrollRect> scrollRect = new List<ScrollRect>();    // 스크롤 맨위로 초기화 시켜주는용도
 
     public List<GameObject> InvenTabList = new List<GameObject>();
     public List<GameObject> ShopTabList = new List<GameObject>();
+    public List<GameObject> QuickTabList = new List<GameObject>();
 
     public static int money = 1000;                             
     public static List<Text> moneyTextList = new List<Text>();
@@ -36,6 +38,7 @@ public class InventoryManager : MonoBehaviour {
         // 처음에 보여질 탭 선택
         TabChangeWithClick(InvenTabList[0]);
         TabChangeWithClick(ShopTabList[0]);
+        TabChangeWithClick(QuickTabList[0]);
     }
 
 
@@ -66,6 +69,11 @@ public class InventoryManager : MonoBehaviour {
             TabList = ShopTabList;
             shopSlotManager.Refresh(TabManager.GetTab(tabObject.name));
         }
+        else if(QuickTabList.Contains(tabObject))
+        {
+            TabList = QuickTabList;
+            quickSlotManager.Refresh(TabManager.GetTab(tabObject.name));
+        }
         else
         { 
             Debug.Log("탭 리스트에 추가 되어있지 않는 탭입니다. 탭 리스트에 추가하세요");
@@ -73,19 +81,23 @@ public class InventoryManager : MonoBehaviour {
         }
 
 
-        //클릭시 색깔 바꾸기
-        for ( int i = 0; i < TabList.Count; i++)
+        // Quick Widget처럼 바꿀 탭이 없고 1개뿐일경우 예외
+        if( TabList.Count > 1)
         {
-            if(tabObject != TabList[i].gameObject)
+            //클릭시 색깔 바꾸기
+            for ( int i = 0; i < TabList.Count; i++)
             {
-                TabList[i].GetComponent<Button>().interactable = true;
-                TabList[i].GetComponent<Image>().color = new Color32(240, 240, 240, 255);
+                if(tabObject != TabList[i].gameObject)
+                {
+                    TabList[i].GetComponent<Button>().interactable = true;
+                    TabList[i].GetComponent<Image>().color = new Color32(240, 240, 240, 255);
+                }
+                else
+                {
+                    TabList[i].GetComponent<Button>().interactable = false;
+                    TabList[i].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                }            
             }
-            else
-            {
-                TabList[i].GetComponent<Button>().interactable = false;
-                TabList[i].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-            }            
         }
     }
 
@@ -116,7 +128,11 @@ public class InventoryManager : MonoBehaviour {
         
         InvenFirstTab.Add(ItemData.ConsumItemClone(0), 19);
         InvenFirstTab.Add(ItemData.EquipmentItemClone(0), 13);
-        
+
+        InventoryTab QuickFirstTab = TabManager.GetTab("QuickFirstTab");
+        QuickFirstTab.Add(ItemData.EquipmentItemClone(0), 2);
+        QuickFirstTab.Add(ItemData.ConsumItemClone(0), 5);
+
 
     }
 }

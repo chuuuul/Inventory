@@ -19,6 +19,7 @@ public class ItemHandler : MonoBehaviour {
     public static List<ItemHandler> HandlerList { get; private set; } = new List<ItemHandler>();
     public static Dictionary<string, ItemHandler> HandlerDiction { get; internal set; } = new Dictionary<string, ItemHandler>();
 
+    [Tooltip("raycast를 할 canvas")]
     public Canvas canvas;           // 캔버스
     internal GraphicRaycaster gr;   // 그래픽 레이캐스트
 

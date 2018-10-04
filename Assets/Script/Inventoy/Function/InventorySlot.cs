@@ -25,7 +25,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public int Index { get; internal set; } //슬롯 인덱스
     public SlotItem Item { get; internal set; } //현재 슬롯 아이템
     
-    private void Start()
+    private void Awake()
     {
         //캐싱 되었는지 확인
         if (slotManager == null)    
@@ -115,6 +115,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 InventorySlot targetSlot = null;
                 GameObject lastObject = null;
 
+                
                 //대상 아이템 등록
                 try
                 {

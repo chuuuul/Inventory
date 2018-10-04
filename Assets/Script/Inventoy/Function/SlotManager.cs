@@ -8,7 +8,7 @@ public class SlotManager : MonoBehaviour
     private static List<SlotManager> ManagerList = new List<SlotManager>();
 
 
-
+    [Header("자식 객체들이 Inventory Slot으로 자동으로 등록")]
     [Tooltip("아이템 슬롯 리스트 (필요시 등록)")]
     public List<InventorySlot> slotList = new List<InventorySlot>();    // 슬롯 리스트
 
@@ -51,7 +51,7 @@ public class SlotManager : MonoBehaviour
     {
         if (tab.Capacity > slotList.Count)
         {
-            Debug.Log("탭의 아이템 수용량이 슬롯 수를 초과합니다. : " + tab.TabName);
+            Debug.Log("탭의 아이템 수용량이 슬롯 수를 초과합니다. : " + tab.TabName);     
             return;
         }
 

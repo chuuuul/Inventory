@@ -7,7 +7,7 @@ public class TabManager : MonoBehaviour
     [Serializable]
     public class TabProperty
     {
-        public string tabName;          // 탭 이름
+        public string tabName ;          // 탭 이름
         public int capacity;            // 탭 아이템 수용량
     }
 
@@ -26,7 +26,6 @@ public class TabManager : MonoBehaviour
             tabNameList.Add(tabList[i].tabName);
             // 탭 이름 리스트, 딕셔너리에 탭 추가
             tabDistionary.Add(tabList[i].tabName, new InventoryTab(tabList[i].tabName, tabList[i].capacity));
-            
         }
     }
 

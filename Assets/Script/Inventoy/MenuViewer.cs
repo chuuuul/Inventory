@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
-public class MenuViewer : ContentViewer {
+public class MenuViewer : ContentViewer  {
 
     [Space(8f)]
 
@@ -13,20 +14,31 @@ public class MenuViewer : ContentViewer {
     public Button sellButton;
 
     private InventorySlot slot;
+    
 
     private enum Widget { NoSelect, Shop, Inventory, QuickSlot };
     private Widget SelectWidget = Widget.NoSelect;
 
+
+    private void Update()
+    {
+
+        if( group.alpha > 0 && Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject() == false )
+        {
+            Cancel();
+        }
+    }
+
     // 슬롯을 클릭했을때 EventCall
     protected override void EventCall()
     {
-        
         for (int i = 0; i < ItemHandler.HandlerList.Count; i++)
             ItemHandler.HandlerList[i].OnSlotClick += OnDisplay;
     }
 
     protected override void OnDisplay(PointerEventData eventData, InventorySlot slot)
     {
+
         // 이상한 클릭일때 안보이기
         if (slot.Item == null || eventData.button == PointerEventData.InputButton.Left ||
             eventData.button == PointerEventData.InputButton.Middle)
@@ -60,9 +72,7 @@ public class MenuViewer : ContentViewer {
             sellButton.interactable = false;
 
         }
-        /*
-         * 미구현
-        else if (inventory.QuickSlotTabList.Exists(x => x.name == slot.Item.Tab.TabName))
+        else if (inventory.QuickTabList.Exists(x => x.name == slot.Item.Tab.TabName))
         {
         
             SelectWidget = Widget.QuickSlot;
@@ -71,7 +81,7 @@ public class MenuViewer : ContentViewer {
             removeButton.interactable = true;
             sellButton.interactable = false;
         }
-        */
+
         else if (inventory.InvenTabList.Exists(x => x.name == slot.Item.Tab.TabName))
         {
 
@@ -126,13 +136,22 @@ public class MenuViewer : ContentViewer {
     {
         if (slot != null)
         {
-            slot.Item.Tab.Remove(slot.Item);
-            /*
-            if (inventory.QuickSlotTabList.Exists(x => x.name == slot.Item.Tab.TabName))
+            
+
+            if (inventory.QuickTabList.Exists(x => x.name == slot.Item.Tab.TabName))
             {
-                inventory.slotManager.LastRefreshedTab.Add(slot.Item, false);
+                if (slot.Item is Consum)
+                    inventory.invenSlotManager.LastRefreshedTab.Add(ItemData.ConsumItemClone(slot.Item.Name) as SlotItem, true);
+
+                if (slot.Item is Equipment)
+                    inventory.invenSlotManager.LastRefreshedTab.Add(ItemData.EquipmentItemClone(slot.Item.Name) as SlotItem, true);
+
+                if (slot.Item is CommonItem)
+                    inventory.invenSlotManager.LastRefreshedTab.Add(ItemData.CommonItemClone(slot.Item.Name) as SlotItem, true);
             } //퀵슬롯일 경우 착용 해제 (제거 후 재추가)
-            */
+
+            slot.Item.Tab.Remove(slot.Item);
+
             SlotManager.RefreshAll();
             Cancel();
         }
@@ -158,4 +177,6 @@ public class MenuViewer : ContentViewer {
         slot = null;
         SelectWidget = Widget.NoSelect;
     }
+
+
 }
