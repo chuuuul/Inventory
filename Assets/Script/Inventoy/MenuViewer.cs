@@ -12,6 +12,7 @@ public class MenuViewer : ContentViewer  {
     public Text removeText;
     public Button removeButton;
     public Button sellButton;
+    public InfoView infoView;
 
     private InventorySlot slot;
     
@@ -22,11 +23,12 @@ public class MenuViewer : ContentViewer  {
 
     private void Update()
     {
-
+        // 외부클릭 감지
         if( group.alpha > 0 && Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject() == false )
         {
             Cancel();
         }
+
     }
 
     // 슬롯을 클릭했을때 EventCall
@@ -77,7 +79,10 @@ public class MenuViewer : ContentViewer  {
         
             SelectWidget = Widget.QuickSlot;
             anchor = ViewerAnchor.TopRight;
-            removeText.text = "착용 해제";
+            if (item is Equipment)
+                removeText.text = "착용 해제";
+            else
+                removeText.text = "등록 해제";
             removeButton.interactable = true;
             sellButton.interactable = false;
         }
@@ -124,7 +129,6 @@ public class MenuViewer : ContentViewer  {
             }
             else
             {
-                Debug.Log("??");
                 slot.itemHandler.Use(slot, slot.Item);
                 SlotManager.RefreshAll();
                 Cancel();
@@ -173,6 +177,8 @@ public class MenuViewer : ContentViewer  {
 
     public void Cancel()
     {
+        if (infoView != null)
+            infoView.Cancel();
         ViewerDisable();
         slot = null;
         SelectWidget = Widget.NoSelect;

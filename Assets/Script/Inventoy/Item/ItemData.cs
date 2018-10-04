@@ -19,7 +19,10 @@ public class ItemData : MonoBehaviour
     public List<Sprite> equipmentSpriteList = new List<Sprite>();
     public List<Sprite> commonItemSpriteList = new List<Sprite>();
 
+    // targetList 0 : weapon  / 1 : shoulder / 2 : potion /
     public List<InventorySlot> targetSlotList = new List<InventorySlot>();  // type을 설정할 타겟슬롯
+    
+
     private void Awake()
     {
         
@@ -43,14 +46,17 @@ public class ItemData : MonoBehaviour
     {
         Equipment sword1 = new Equipment(200, 150, "2001", "sword1", "도란검", "싸고 효율좋은 도란검", "weapon", equipmentSpriteList[0]);
         sword1.UseEvent += (item) => UseItemFunction(sword1);
+        sword1.TargetSlot = targetSlotList[0];
         equipmentItemList.Add(sword1);
 
         Equipment shoulder1 = new Equipment(200, 150, "2002", "shoulder1", "어깨빵", "싸고 효율좋은 어깨빵", "shoulder", equipmentSpriteList[1]);
         shoulder1.UseEvent += (item) => UseItemFunction(sword1);
+        shoulder1.TargetSlot = targetSlotList[1];
         equipmentItemList.Add(shoulder1);
 
         Equipment bow1 = new Equipment(200, 150, "2003", "bow1", "활활타오르는활활", "화살은 별도입니다", "weapon", equipmentSpriteList[2]);
         bow1.UseEvent += (item) => UseItemFunction(bow1);
+        bow1.TargetSlot = targetSlotList[1];
         equipmentItemList.Add(bow1);
 
         // #### Equipment의 Target Slot을 지정해야됨
@@ -152,7 +158,7 @@ public class ItemData : MonoBehaviour
         Equipment newItem = new Equipment(equipmentItemList[index].BuyPrice, equipmentItemList[index].SellPrice
             , equipmentItemList[index].Id, equipmentItemList[index].Name, equipmentItemList[index].DisplayName
             , equipmentItemList[index].Description, equipmentItemList[index].Type, equipmentItemList[index].Icon);
-
+        newItem.TargetSlot = equipmentItemList[index].TargetSlot;
         return newItem;
     }
 
@@ -176,6 +182,7 @@ public class ItemData : MonoBehaviour
             , equipmentItemList[index].Id, equipmentItemList[index].Name, equipmentItemList[index].DisplayName
             , equipmentItemList[index].Description, equipmentItemList[index].Type, equipmentItemList[index].Icon);
 
+        newItem.TargetSlot = equipmentItemList[index].TargetSlot;
         return newItem;
     }
 }

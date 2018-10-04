@@ -58,8 +58,6 @@ public class ItemHandler : MonoBehaviour {
     public Action<PointerEventData, InventorySlot> OnSlotEnter { get; set; } //포인터 엔터 이벤트
     public Action<PointerEventData, InventorySlot> OnSlotExit { get; set; } //포인터 익스트 이벤트
 
-    public Action WidgetAlphaOff { get; set; } // 위젯 닫기 이벤트
-
     public SlotItem SelectedItem { get; internal set; } //선택된 아이템
     public SlotItem TargetItem { get; internal set; } //타겟 아이템
 

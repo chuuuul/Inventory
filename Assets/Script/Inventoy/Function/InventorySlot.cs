@@ -86,7 +86,6 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
         itemHandler.OnSlotDown?.Invoke(eventData, this);
-
         //좌클릭 이벤트
         if(eventData.button == PointerEventData.InputButton.Left)
         {
@@ -220,7 +219,7 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (eventData.button == PointerEventData.InputButton.Left)
         {
 
-#if UNITY_EDITOR || (!UNITY_ANDROID && !UNITY_IOS)
+#if UNITY_EDITOR || (!UNITY_ANDROID && !UNITY_IOS)  // #### 임의로 바꿈
             if (!(eventData.clickCount >= 2)) return; //PC 더블 클릭 체크
 #endif
             //슬롯에 아이템이 있을 경우 실행
@@ -242,7 +241,6 @@ public class InventorySlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                             slotManager.Refresh(slotManager.LastRefreshedTab);
                         }
                     }
-
                 }
 
                 catch (Exception) { }

@@ -27,6 +27,8 @@ public class IVWidget : MonoBehaviour {
         [Tooltip("etc 추가 길이 ( ex 상점 Title 영역 / 돈 표시 영역 합한 크기")]
         public Vector2 etcSize = new Vector2();
 
+        [Tooltip("가로 세로 최소 아이템개수 (길이로 계산하여 Widget 최소크기 지정)")]
+        public Vector2 leastItemCount = new Vector2();
         [HideInInspector]
         public Vector2 invenSize;                   // 인벤 가로 길이
 
@@ -69,6 +71,14 @@ public class IVWidget : MonoBehaviour {
 
     private void InvenSizeSetting( int index )
     {
+        // 최소 크기 지정
+        if (widgetList[index].slotCount.x < widgetList[index].leastItemCount.x)
+            widgetList[index].slotCount.x = widgetList[index].leastItemCount.x;
+
+        if (widgetList[index].slotCount.y < widgetList[index].leastItemCount.y)
+            widgetList[index].slotCount.y = widgetList[index].leastItemCount.y;
+
+
         // 인벤 가로 길이
         // {가로 슬롯수 x 슬롯 사이즈} + {(가로 슬롯수 - 1) x 슬롯 간격} + { 가로 처음값 x 2 } + etc가로
         widgetList[index].invenSize.x = (widgetList[index].slotCount.x * widgetList[index].slotSize.x) 
