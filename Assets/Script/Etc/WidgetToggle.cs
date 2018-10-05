@@ -2,51 +2,57 @@
 using System;
 using UnityEngine;
 
-public class WidgetToggle : MonoBehaviour
+namespace Inventory
 {
-
-    public List<CanvasGroup> canvasGroup;
-    public MenuViewer menuviewer;
-
-    protected bool toggle = false;
-
-    private Action InvenOnOff;
-
-
-    protected void Start()
-    {
-        InvenOnOff += InvenDisplay;
-
-        InvenOnOff?.Invoke();         // 초기화
-
-    }
-    
-    public void InvenDisplay()
+    //Widget이 켜졋다 꺼졋다 하는 기능
+    public class WidgetToggle : MonoBehaviour
     {
 
-        for (int i = 0; i < canvasGroup.Count; i++)
+        public List<CanvasGroup> canvasGroup;
+
+        //같이 사라질 menuViewer
+        public MenuViewer menuViewer;
+
+        protected bool toggle = false;
+
+        private Action InvenOnOff;
+
+
+        protected void Start()
         {
-            if (toggle == true)        //켜짐
-                canvasGroup[i].alpha = 1;
-             
-            else if (toggle == false)    //꺼짐
-            {
-                canvasGroup[i].alpha = 0;
-                menuviewer.Cancel();
-            }
 
-        canvasGroup[i].interactable = toggle;
-        canvasGroup[i].blocksRaycasts = toggle;
+            InvenOnOff += InvenDisplay;
+            InvenOnOff?.Invoke();         // 초기화
         }
-    }
 
-    public void ToggleSwitch()
-    {
-        toggle = !toggle;
-        InvenOnOff?.Invoke();
-    }
+        public void InvenDisplay()
+        {
 
+            for (int i = 0; i < canvasGroup.Count; i++)
+            {
+                if (toggle == true)        //켜짐
+                    canvasGroup[i].alpha = 1;
+
+                else if (toggle == false)    //꺼짐
+                {
+                    canvasGroup[i].alpha = 0;
+                    if (menuViewer != null)
+                        menuViewer.Cancel();
+
+                }
+
+                canvasGroup[i].interactable = toggle;
+                canvasGroup[i].blocksRaycasts = toggle;
+            }
+        }
+
+        public void ToggleSwitch()
+        {
+            toggle = !toggle;
+            InvenOnOff?.Invoke();
+        }
+
+    }
 }
-
 
 
