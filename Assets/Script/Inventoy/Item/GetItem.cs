@@ -9,7 +9,7 @@ namespace Item
     {
 
 
-        public enum MajorTypeEnum { none, commonItem, consum, equipment }
+        public enum MajorTypeEnum { none, CommonItem, ConsumItem, EquipmentItem, ImmediateItem }
         [Header("대분류 설정")]
         public MajorTypeEnum majorType;
 
@@ -17,10 +17,8 @@ namespace Item
         [Tooltip(" 아이템 비교 변수. 이 값에 따라 가져오는 아이템이 달라진다. ")]
         public string itemName;
 
-
-
         [Header("int")]
-        [Tooltip(" 아이템 획득량 결정 ")]
+        [Tooltip(" 아이템 획득량 결정 (Random 돌릴 범위) ")]
         public Vector2 dropAmountRange = new Vector2(1, 1);
 
 
@@ -28,22 +26,17 @@ namespace Item
 
         private void Start()
         {
-            index = FindItemWithItemName();
+            if (itemName == null)
+                Debug.Log("아이템 이름을 입력하세요 : gameObject.name");
+            else index = FindItemWithItemName();
         }
 
         // return 아이템의 인덱스 ( 에러시 -1 )
         private int FindItemWithItemName()
         {
-            if (itemName == null)
-            {
-                Debug.Log(this.gameObject.name);
-                Debug.Log("아이템 이름을 입력하세요");
-                return -1;
-            }
-
             switch (majorType)
             {
-                case MajorTypeEnum.commonItem:
+                case MajorTypeEnum.CommonItem:
                     
                     for (int i = 0; i < ItemData.commonItemList.Count; i++)
                         if (ItemData.commonItemList[i].Name == itemName)
@@ -52,7 +45,7 @@ namespace Item
                     Debug.Log("CommonItemList에 해당하는 아이템이 없습니다. 아이템 이름을 확인하세요" + itemName);
                     return -1;
 
-                case MajorTypeEnum.consum:
+                case MajorTypeEnum.ConsumItem:
                     for (int i = 0; i < ItemData.consumItemList.Count; i++)
                         if (ItemData.consumItemList[i].Name == itemName)
                             return i;
@@ -61,7 +54,8 @@ namespace Item
                     return -1;
 
 
-                case MajorTypeEnum.equipment:
+                case MajorTypeEnum.EquipmentItem:
+                    
                     for (int i = 0; i < ItemData.equipmentItemList.Count; i++)
                         if (ItemData.equipmentItemList[i].Name == itemName)
                             return i;
@@ -69,13 +63,18 @@ namespace Item
                     Debug.Log("EquipmentItemList 해당하는 아이템이 없습니다. 아이템 이름을 확인하세요" + itemName);
                     return -1;
 
+                case MajorTypeEnum.ImmediateItem:
+                    for (int i = 0; i < ItemData.immediateItemList.Count; i++)
+                        if (ItemData.immediateItemList[i].Name == itemName)
+                            return i;
+                    Debug.Log("ImmediateItemList 해당하는 아이템이 없습니다. 아이템 이름을 확인하세요" + itemName);
+                    return -1;
 
                 default:
                     Debug.Log("대분류를 선택하세요. ItemName : " + this.gameObject.name);
                     return -1;
             }
         }
-
 
         //충동시 아이템 획득
         private void OnTriggerEnter(Collider other)
@@ -84,10 +83,10 @@ namespace Item
 
             switch (majorType)
             {
-                case MajorTypeEnum.commonItem:
+                case MajorTypeEnum.CommonItem:
                     {
                         // 깊은 복사 & 수정
-                        CommonItem item = ItemData.CommonItemClone(index);
+                        SlotItem item = ItemData.CommonItemClone(index);
 
                         int dropCount = UnityEngine.Random.Range((int)dropAmountRange.x, (int)dropAmountRange.y + 1);
                         item.Count = dropCount;
@@ -98,9 +97,9 @@ namespace Item
                         break;
                     }
 
-                case MajorTypeEnum.consum:
+                case MajorTypeEnum.ConsumItem:
                     {
-                        Consum item = ItemData.ConsumItemClone(index);
+                        SlotItem item = ItemData.ConsumItemClone(index);
 
                         int dropCount = UnityEngine.Random.Range((int)dropAmountRange.x, (int)dropAmountRange.y + 1);
                         item.Count = dropCount;
@@ -109,12 +108,19 @@ namespace Item
                         inventoryTab.Add(item, true);
                         break;
                     }
-                case MajorTypeEnum.equipment:
+                case MajorTypeEnum.EquipmentItem:
                     {
-                        Equipment item = ItemData.EquipmentItemClone(index);
+                        SlotItem item = ItemData.EquipmentItemClone(index);
 
                         inventoryTab = TabManager.GetTab(0);
                         inventoryTab.Add(item, true);
+                        break;
+                    }
+                case MajorTypeEnum.ImmediateItem:
+                    {
+                        int dropAmount = UnityEngine.Random.Range((int)dropAmountRange.x, (int)dropAmountRange.y + 1);
+                        ImmediateItem item = ItemData.ImmediateClone(index);
+                        item.UseEvent.Invoke(dropAmount);
                         break;
                     }
             }

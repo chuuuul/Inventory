@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Item;
 
 namespace Inventory
 {
@@ -64,7 +65,7 @@ namespace Inventory
 
                 if (itemCountText != null)      // 개수표시
                 {
-                    if (slotItem.MaxCount == 1) itemCountText.text = "";
+                    if (slotItem.MaxCount <= 1) itemCountText.text = "";
                     else itemCountText.text = slotItem.Count.ToString();
                 }
 
