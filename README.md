@@ -30,7 +30,7 @@
 등등
 
 ### 환경
-Window 10 <
+Window 10 </br>
 Unity 2018.2.5f1 (64bit)
 
 ### 데모영상
